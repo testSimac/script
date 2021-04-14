@@ -1,0 +1,41 @@
+var p = JSON.parse(msg.payload);
+//var p = msg.payload;
+
+var logtype = p["0"]["logtype"];
+var srchost = p["0"]["src_host"];
+var srcport = p["0"]["src_port"];
+var datetime = p["0"]["local_time_adjusted"].split('.')[0];
+var attackedport = p["0"]["dst_port"]
+
+if(logtype == "5001")
+{
+    msg.payload = "Port scanned: #"+ attackedport +"# By: @"+ srchost + "@ At: ~" + datetime+ "~";
+    return msg;
+    
+}
+else if (logtype == "2000")
+{
+    msg.payload = "Tried to login port: " + attackedport + " By: " + srchost;
+    return msg;
+    
+}
+else if (logtype == "6001")
+{
+    msg.payload = "Tried to login port: " + attackedport + " By: " + srchost;
+    return msg;
+    
+}
+else if (logtype == "3001")
+{
+    msg.payload = "HTTP login tried by: " + srchost
+}
+else if (logtype == "3000")
+{
+    msg.payload = "HTTP login tried by: " + srchost
+}
+else {
+    msg.payload = "Date: "+datetime+  " Attacker: " + srchost+ ":"+srcport+ " Port: " + attackedport;
+    return msg;
+    
+}
+//return msg;
