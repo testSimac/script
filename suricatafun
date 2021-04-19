@@ -1,0 +1,22 @@
+var datetime = msg.payload.split('.')[0]
+
+var after = msg.payload.split('}')[1]
+var attacker = after.split(' -> ')[0]
+
+var priority = msg.payload.split('[Priority: ')[1].substr(0,1)
+
+var sprotocol = msg.payload.split('[**]')[1]
+var protocol = sprotocol.split(' ')[2]
+
+
+//msg.payload = 'Date: '+datetime+ '\nLevel: '+ priority+ '\nProtocol: ' +protocol+ '\nAttacker:' +attacker
+///
+if (protocol == 'SURICATA')
+{
+    //do nothing
+}else {
+  msg.payload = 'Date: '+datetime+ '\nLevel: '+ priority+ '\nProtocol: ' +protocol+ '\nAttacker:' +attacker;
+  return msg;  
+}
+
+//return msg;
